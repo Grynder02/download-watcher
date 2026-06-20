@@ -14,7 +14,7 @@ So I built this.
 
 ## What it does
 
-| Feature | How it works |
+| What | How |
 |---|---|
 | **Progress bar** | Animated fill with file count overlay |
 | **Transfer speed** | MB/s calculated from byte deltas |
@@ -25,8 +25,7 @@ So I built this.
 | **Failure alarm** | Audible alert through speakers when download stops |
 | **Browser backup alarm** | Web Audio siren in the dashboard tab |
 | **Heartbeat** | Soft chirp every ~30s so you know it's alive, with mute toggle |
-| **Density map** | Visual grid of all files showing patttern |
-| **Multi-language** | English, Spanish, German, French, Portuguese, Japanese, Chinese |
+| **Density map** | Visual grid of all files so you can see patterns |
 
 ## Works with anything
 
@@ -43,14 +42,14 @@ So I built this.
 ```bash
 # One-time setup
 bash watcher/dl-setup.sh
-# enter download directory, file count, systemd service name
+# → enter download directory, file count, systemd service name
 
 # Launch (or click the app icon)
 bash watcher/dl-launcher.sh
-# opens http://localhost:18999 in your browser
+# → opens http://localhost:18999 in your browser
 ```
 
-To pin to taskbar: search "Download Watcher" in your app menu, right-click, Add to Favorites.
+To pin to taskbar: search "Download Watcher" in your app menu → right-click → Add to Favorites.
 
 ## Requirements
 
@@ -60,7 +59,7 @@ To pin to taskbar: search "Download Watcher" in your app menu, right-click, Add 
 - `systemctl --user` if you want service monitoring
 - A browser for the dashboard
 
-No npm, no Docker, no API keys, no cloud. Just a browser tab that tells you what's happening.
+No npm, no Docker, no API keys, no cloud.
 
 For your next download, run `dl-setup.sh` with the new target and click the app icon.
 
