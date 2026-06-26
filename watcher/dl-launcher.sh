@@ -2,7 +2,7 @@
 # Download Watcher Launcher — click, pin to taskbar, run from terminal
 CONFIG="$HOME/.config/download-watcher/config"
 PIDFILE="/tmp/dl-dashboard.pid"
-DASHBOARD_SCRIPT="$HOME/.openclaw/workspace/scripts/dl-dashboard.py"
+DASHBOARD_SCRIPT="${DL_WATCHER_HOME:-$HOME/.local/share/download-watcher/watcher}/dl-dashboard.py"
 
 mkdir -p "$HOME/.config/download-watcher"
 
@@ -14,7 +14,7 @@ fi
 
 # No config? prompt to set up
 if [ ! -f "$CONFIG" ]; then
-  exec bash "$HOME/.openclaw/workspace/scripts/dl-setup.sh"
+  exec bash "${DL_WATCHER_HOME:-$HOME/.local/share/download-watcher/watcher}/dl-setup.sh"
   exit 0
 fi
 

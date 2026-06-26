@@ -2,7 +2,7 @@
 Type=Application
 Name=Download Watcher
 Comment=Live progress dashboard with audio alerts for any download
-Exec=/home/greg/.openclaw/workspace/scripts/dl-launcher.sh
+Exec=download-watcher
 Icon=drive-harddisk
 Terminal=false
 Categories=Utility;Network;

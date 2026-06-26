@@ -22,9 +22,9 @@ TOTAL_FILES = int(_conf.get('TOTAL_FILES', '0'))
 SERVICE = _conf.get('SERVICE', '')
 PORT = int(_conf.get('PORT', '18999'))
 STALL_SECONDS = int(_conf.get('STALL_SECONDS', '300'))
-MONITOR_SCRIPT = os.path.expanduser(_conf.get('MONITOR_SCRIPT', '~/.openclaw/workspace/scripts/dl-monitor.sh'))
-ALARM_WAV = os.path.expanduser(_conf.get('ALARM_WAV', '~/.openclaw/workspace/scripts/dl-alarm.wav'))
-HEARTBEAT_WAV = os.path.expanduser(_conf.get('HEARTBEAT_WAV', '~/.openclaw/workspace/scripts/dl-heartbeat.wav'))
+MONITOR_SCRIPT = os.path.expanduser(_conf.get('MONITOR_SCRIPT', '~/.local/share/download-watcher/watcher/dl-monitor.sh'))
+ALARM_WAV = os.path.expanduser(_conf.get('ALARM_WAV', '~/.local/share/download-watcher/watcher/dl-alarm.wav'))
+HEARTBEAT_WAV = os.path.expanduser(_conf.get('HEARTBEAT_WAV', '~/.local/share/download-watcher/watcher/dl-heartbeat.wav'))
 TITLE = _conf.get('TITLE', os.path.basename(DIR.rstrip('/')))
 
 STATE_FILE = "/dev/shm/dl-watcher-state.json"
@@ -54,7 +54,8 @@ _prev_failed = False
 _prev_files = 0
 _prev_file_time = time.time()
 _heartbeat_counter = 0
-_muted = False
+_muted = True
+AUDIO_ENABLED = _conf.get('AUDIO_ENABLED', '0').lower() in ('1','true','yes','on')
 
 # ─── Translations ──────────────────────────────────────────
 TRANSLATIONS = {
@@ -331,6 +332,7 @@ let currentLang = '""" + lang + r"""';
 let lastFiles = 0;
 let failCount = 0;
 let alarmPlaying = false;
+const AUDIO_ENABLED = false;
 let audioCtx = null;
 
 function t(key) {
@@ -393,8 +395,8 @@ function update(d) {
     $('progressFill').classList.add('stalled');
     showAlert(t('dl_failed'), 'fail');
     if (!alarmPlaying) {
-      alarmPlaying = true; initAudio(); playBrowserSiren();
-      window._alarmInterval = window._alarmInterval || setInterval(() => playBrowserSiren(), 3000);
+      alarmPlaying = true; if (AUDIO_ENABLED) { initAudio(); playBrowserSiren(); }
+      // repeating siren disabled by default; user must opt into audio explicitly
     }
   } else {
     $('dot').className = 'dot ok';

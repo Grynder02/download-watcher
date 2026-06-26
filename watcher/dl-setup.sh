@@ -17,12 +17,13 @@ cat > "$CONFIG_DIR/config" << EOF
 DIR="$DIR"
 TOTAL_FILES="$TOTAL"
 SERVICE="$SERVICE"
-DASHBOARD_SCRIPT="\$HOME/.openclaw/workspace/scripts/dl-dashboard.py"
-MONITOR_SCRIPT="\$HOME/.openclaw/workspace/scripts/dl-monitor.sh"
-ALARM_WAV="\$HOME/.openclaw/workspace/scripts/dl-alarm.wav"
-HEARTBEAT_WAV="\$HOME/.openclaw/workspace/scripts/dl-heartbeat.wav"
+DASHBOARD_SCRIPT="\${DL_WATCHER_HOME:-\$HOME/.local/share/download-watcher/watcher}/dl-dashboard.py"
+MONITOR_SCRIPT="\${DL_WATCHER_HOME:-\$HOME/.local/share/download-watcher/watcher}/dl-monitor.sh"
+ALARM_WAV="\${DL_WATCHER_HOME:-\$HOME/.local/share/download-watcher/watcher}/dl-alarm.wav"
+HEARTBEAT_WAV="\${DL_WATCHER_HOME:-\$HOME/.local/share/download-watcher/watcher}/dl-heartbeat.wav"
 PORT=18999
 STALL_SECONDS=300
+AUDIO_ENABLED=0
 EOF
 
 echo "Config saved to $CONFIG_DIR/config"
